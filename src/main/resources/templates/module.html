@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#" th:action="@{/module/save}" th:object="${module}"
+      method="post">
+    <fieldset>
+        <input type="submit" id="submitButton" th:value="Save">
+        <table>
+            <thead>
+            <tr>
+                <th>Module id</th>
+                <th>Module text</th>
+                <th>Module root</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="m: ${modules}">
+                <td th:text="${m.id}"></td>
+                <td th:text="${m.text}"></td>
+                <td th:text="${m.root}"></td>
+            </tr>
+            <tr>
+                <td><input hidden th:value="${module.getModule()}" th:field="*{module}"/></td>
+                <td><input th:field="*{text}"/></td>
+                <td><input type="text"
+                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                           th:field="*{root}"/></td>
+            </tr>
+            </tbody>
+        </table>
+    </fieldset>
+</form>
+</body>
+</html>

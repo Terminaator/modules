@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#" th:action="@{/modules/save}" th:object="${module}"
+      method="post">
+    <fieldset>
+        <div th:object="${error}">
+            <div th:if="${error?.message}">
+                <p th:text="${error.message}"></p>
+            </div>
+        </div>
+        <input type="submit" id="submitButton" th:value="Save">
+        <table>
+            <thead>
+            <tr>
+                <th>Modules name</th>
+            </tr>
+            <tr th:each="m: ${modules}">
+                <td><a th:href="@{/module/} + ${m.id}" th:text="${m.text}"/></td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><input th:field="*{name}"/></td>
+            </tr>
+            </tbody>
+        </table>
+    </fieldset>
+</form>
+</body>
+</html>
